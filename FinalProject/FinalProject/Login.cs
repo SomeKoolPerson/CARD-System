@@ -16,5 +16,10 @@ namespace FinalProject
         {
             InitializeComponent();
         }
+
+        private void userName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

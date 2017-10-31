@@ -8,3 +8,16 @@ C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProje
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.exe
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.exe.config
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csprojResolveAssemblyReference.cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.CreateNewAccount.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Form1.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Properties.Resources.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.ViewItem.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.GenerateResource.Cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
