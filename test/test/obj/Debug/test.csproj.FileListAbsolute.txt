@@ -8,3 +8,13 @@ C:\Users\pdfai\source\repos\test\test\obj\Debug\test.csproj.GenerateResource.Cac
 C:\Users\pdfai\source\repos\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
 C:\Users\pdfai\source\repos\test\test\obj\Debug\test.exe
 C:\Users\pdfai\source\repos\test\test\obj\Debug\test.pdb
+C:\Users\nitulio\Documents\Final Project SE\test\test\bin\Debug\test.exe.config
+C:\Users\nitulio\Documents\Final Project SE\test\test\bin\Debug\test.exe
+C:\Users\nitulio\Documents\Final Project SE\test\test\bin\Debug\test.pdb
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.Form1.resources
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.Properties.Resources.resources
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.csproj.GenerateResource.Cache
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.exe
+C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.pdb
