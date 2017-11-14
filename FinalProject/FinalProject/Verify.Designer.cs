@@ -45,20 +45,22 @@
             // 
             // verCodeTextBox
             // 
-            this.verCodeTextBox.Location = new System.Drawing.Point(50, 61);
+            this.verCodeTextBox.Location = new System.Drawing.Point(36, 54);
             this.verCodeTextBox.Name = "verCodeTextBox";
             this.verCodeTextBox.Size = new System.Drawing.Size(240, 20);
             this.verCodeTextBox.TabIndex = 1;
+            this.verCodeTextBox.TextChanged += new System.EventHandler(this.verCodeTextBox_TextChanged);
             // 
             // enterButton
             // 
             this.enterButton.Font = new System.Drawing.Font("Times New Roman Uni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enterButton.Location = new System.Drawing.Point(105, 89);
+            this.enterButton.Location = new System.Drawing.Point(91, 87);
             this.enterButton.Name = "enterButton";
             this.enterButton.Size = new System.Drawing.Size(135, 48);
             this.enterButton.TabIndex = 2;
             this.enterButton.Text = "Enter";
             this.enterButton.UseVisualStyleBackColor = true;
+            this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
             // 
             // Verify
             // 
