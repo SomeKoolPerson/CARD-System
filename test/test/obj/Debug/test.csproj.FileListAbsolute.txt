@@ -18,3 +18,13 @@ C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.csproj.Gene
 C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
 C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.exe
 C:\Users\nitulio\Documents\Final Project SE\test\test\obj\Debug\test.pdb
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\bin\Debug\test.exe.config
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\bin\Debug\test.exe
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\bin\Debug\test.pdb
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.Form1.resources
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.Properties.Resources.resources
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.csproj.GenerateResource.Cache
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.exe
+C:\Users\pdfai\OneDrive\Documents\Software Engineering CS 275\CARD-System-master\test\test\obj\Debug\test.pdb

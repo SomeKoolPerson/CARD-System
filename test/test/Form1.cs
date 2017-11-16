@@ -30,20 +30,11 @@ namespace test
             return text.Substring(start, length);
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void WebGet(string site, List<string> cards, int iteration)
         {
-            List<string> cards = new List<string>();
-            List<string> names = new List<string>();
-            List<string> prices = new List<string>();
-            List<string> links = new List<string>();
-            List<string> types = new List<string>();
             WebClient web = new WebClient();
-            string cardhtml = web.DownloadString("https://deckbox.org/games/mtg/cards?f=g5MC4wMQ**");
+            string cardhtml = web.DownloadString(site);
             MatchCollection m1 = Regex.Matches(cardhtml, @"<td class='card_name'>(.+?)r>", RegexOptions.Singleline);
 
             for (int i = 0; i < m1.Count; i++)
@@ -52,23 +43,36 @@ namespace test
                 cards.Add(card);
             }
 
-            Console.WriteLine(cards[0]);
-
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = iteration; i < (iteration + 30); i++)
             {
+                Console.Write(cards[i]);
                 string link = Parse(cards[i], "<a class='simple' href='", "' target='_blank'>");
-                links.Add(link);
-                string name = Parse(cards[i], "target='_blank'>", "</a>");
-                names.Add(name);
+                string name = Parse(cards[i], "target='_blank'>", "</a>\n");
                 string price = Parse(cards[i], "<td class='center minimum_width'>", "</td>\n</t");
-                prices.Add(price);
                 string type = Parse(cards[i], "</a>\n</td>\n<td>", "</td>\n<td class='center'>");
-                types.Add(type);
 
                 cards[i] = name + " - " + type + " - " + price + " - " + link;
 
             }
+        }
 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<string> cards = new List<string>();
+
+            for (int i = 1; i < 100; i++)
+            {
+                string url = "https://deckbox.org/games/mtg/cards?f=g5MC4wMQ%2A%2A&p=" + i.ToString();
+                int iteration = ((i - 1) * 30);
+                WebGet(url, cards, iteration);
+            }
+            
+           
             listBox1.DataSource = cards;
         }
 
