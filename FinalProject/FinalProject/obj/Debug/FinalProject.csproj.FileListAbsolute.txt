@@ -12,3 +12,4 @@ C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProje
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.Verify.resources
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\WindowsFormsApp2.View_Item.resources
+C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.CreateNewAccount.resources

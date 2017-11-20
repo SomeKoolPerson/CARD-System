@@ -151,5 +151,12 @@ namespace FinalProject
             label1.Enabled = false;
             label1.Visible = false;
         }
+
+        private void createAccButton_Click(object sender, EventArgs e)
+        {
+            CreateNewAccount acc = new CreateNewAccount(_connectionString, this);
+            acc.Show();
+            this.Hide();
+        }
     }
 }

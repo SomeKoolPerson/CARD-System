@@ -95,6 +95,7 @@
             this.createAccButton.TabIndex = 5;
             this.createAccButton.Text = "Create Account";
             this.createAccButton.UseVisualStyleBackColor = true;
+            this.createAccButton.Click += new System.EventHandler(this.createAccButton_Click);
             // 
             // helpButton
             // 
