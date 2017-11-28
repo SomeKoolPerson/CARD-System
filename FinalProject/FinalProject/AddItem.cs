@@ -7,18 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Net;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace FinalProject
 {
@@ -28,7 +16,6 @@ namespace FinalProject
         private String _desc;
         private double _price;
         private String _condition;
-        private String _set;
         private String _category;
         private Collection _collection;
         private CARD _card;
@@ -70,11 +57,11 @@ namespace FinalProject
         {
             _condition = comboBox4.SelectedItem.ToString();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            MakeMTGCard make = new MakeMTGCard(_name, _set, _desc, _condition, _category);
-            MagicCard card = make.Make();
-            _collection.AddItem(card);
+            Item item = new Item(_name, _desc, _condition, _category, 100);
+            _collection.AddItem(item);
             _card.initializeCollection();
             _card.calcTotValue();
             _button.Enabled = true;
@@ -83,16 +70,6 @@ namespace FinalProject
         private void AddItem_Closed(object sender, FormClosedEventArgs e)
         {
             _button.Enabled = true;
-        }
-
-        private void AddItem_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            _set = textBox2.Text;
         }
     }
 }

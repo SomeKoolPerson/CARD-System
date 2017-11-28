@@ -55,12 +55,12 @@ namespace FinalProject
             if (availableUsername())
             {
                 label9.Visible = true;
-                label9.Text = "Unavailable";
+                label9.Text = "Available";
             }
             else
             {
                 label9.Visible = true;
-                label9.Text = "Available";
+                label9.Text = "Unavailable";
             }
         }
 
@@ -75,17 +75,17 @@ namespace FinalProject
             {
                 conn.Open();
                 findExistingUser = new OleDbCommand("SELECT Username FROM Users WHERE Users.Username ='" + username + "'", conn);
-                String username2 = findExistingUser.ExecuteScalar().ToString();
-                if (!username2.Equals(""))
+                bool isAvailable  = findExistingUser.ExecuteScalar() == null;
+                if (isAvailable)
                 {
-                    toReturn =  true;
+                    toReturn = true;
                 }
-                conn.Close();
             }
             catch
             {
-
+                
             }
+            conn.Close();
 
             return toReturn;
         }
@@ -101,37 +101,33 @@ namespace FinalProject
                 conn.Open();
                 String email = textBox2.Text;
                 findExistingEmail = new OleDbCommand("SELECT Email FROM Users WHERE Users.Email ='" + email + "'", conn);
-                String email2 = findExistingEmail.ExecuteScalar().ToString();
-                if (!email2.Equals(""))
+                bool isAvailable = findExistingEmail.ExecuteScalar() == null;
+                if (isAvailable)
                 {
                     toReturn = true;
-                    label11.Visible = true;
                 }
                 conn.Close();
             }
             catch
             {
-                label11.Visible = false;
+
             }
 
             return toReturn;
         }
 
-        // checks to see if username is in proper format and available
-        private bool validUsername()
+        // checks to see if username is in proper format
+        private bool properUsername()
         {
             String username = textBox1.Text;
             bool containsAt = username.Contains('@');
             bool available = availableUsername();
-            if (!available && !containsAt)
+            if (!containsAt)
             {
-                _username = username;
-                label6.Visible = false;
                 return true;
             }
             else
             {
-                label6.Visible = true;
                 return false;
             }
             
@@ -158,17 +154,47 @@ namespace FinalProject
             }
         }
 
-        // checks to see if email is in proper format and available
+        // checks to see if email is in proper format
+        private bool properEmail()
+        {
+            RegexUtilities util = new RegexUtilities();
+            string email = textBox2.Text;
+            if (util.IsValidEmail(email))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // returns true if email is properly formatted and available
         private bool validEmail()
         {
-            string email = textBox2.Text;
-            try
+            if (properEmail() && availableEmail())
             {
-                var addr = new MailAddress(email);
-                return addr.Address == email; //&& availableEmail();
+                label7.Visible = false;
+                return true;
             }
-            catch
+            else
             {
+                label7.Visible = true;
+                return false;
+            }
+        }
+
+        // returns true if username is properly formatted and available
+        private bool validUsername()
+        {
+            if (properUsername() && availableUsername())
+            {
+                label6.Visible = false;
+                return true;
+            }
+            else
+            {
+                label6.Visible = true;
                 return false;
             }
         }
@@ -209,11 +235,6 @@ namespace FinalProject
             if (!moveOn) {
                 _login.Show();
             }
-        }
-
-        private void CreateNewAccount_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
