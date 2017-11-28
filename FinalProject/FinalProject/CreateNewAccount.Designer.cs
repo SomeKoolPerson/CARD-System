@@ -227,6 +227,7 @@
             this.Name = "CreateNewAccount";
             this.Text = "CreateNewAccount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateNewAccount_Closed);
+            this.Load += new System.EventHandler(this.CreateNewAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

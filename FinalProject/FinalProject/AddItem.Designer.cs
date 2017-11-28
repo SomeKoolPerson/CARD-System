@@ -37,6 +37,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -56,7 +58,7 @@
             this.comboBox4.Items.AddRange(new object[] {
             "New",
             "Used"});
-            this.comboBox4.Location = new System.Drawing.Point(98, 176);
+            this.comboBox4.Location = new System.Drawing.Point(98, 207);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 21);
             this.comboBox4.TabIndex = 3;
@@ -87,7 +89,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 93);
+            this.label3.Location = new System.Drawing.Point(16, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 32);
             this.label3.TabIndex = 6;
@@ -98,7 +100,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 179);
+            this.label4.Location = new System.Drawing.Point(20, 207);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 16);
             this.label4.TabIndex = 7;
@@ -114,7 +116,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(98, 90);
+            this.richTextBox1.Location = new System.Drawing.Point(98, 108);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(121, 80);
             this.richTextBox1.TabIndex = 9;
@@ -132,12 +134,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 16);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Set";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(98, 70);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(120, 20);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
             // AddItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(258, 319);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddItem_Closed);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.textBox1);
@@ -149,6 +170,8 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "AddItem";
             this.Text = "AddItem";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddItem_Closed);
+            this.Load += new System.EventHandler(this.AddItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +188,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

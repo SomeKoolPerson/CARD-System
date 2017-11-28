@@ -48,7 +48,7 @@ namespace FinalProject
                     conn.Close();
                 }
             }*/
-            _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\CARD.accdb";
+            _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\nitulio\Documents\Final Project SE\CARD-System-master\CARD-System-master\FinalProject\CARD.accdb";
             InitializeComponent();
         }
 
@@ -157,6 +157,11 @@ namespace FinalProject
             CreateNewAccount acc = new CreateNewAccount(_connectionString, this);
             acc.Show();
             this.Hide();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

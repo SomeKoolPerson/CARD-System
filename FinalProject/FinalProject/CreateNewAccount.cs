@@ -211,5 +211,9 @@ namespace FinalProject
             }
         }
 
+        private void CreateNewAccount_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
