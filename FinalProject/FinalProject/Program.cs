@@ -31,15 +31,9 @@ namespace FinalProject
             Console.WriteLine(_username);
             conn.Close();*/
 
-            string username = "bklybor";
-            string password = "12345B";
-            string email = "bklybor@gmail.com";
-            string _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\CARD.accdb";
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Login login = new Login();
-            Application.Run(new CARD(username,email,password,login, _connectionString));
+            Application.Run(new Login());
         }
     }
 }

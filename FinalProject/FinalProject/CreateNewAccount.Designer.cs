@@ -176,7 +176,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(199, 128);
+            this.label11.Location = new System.Drawing.Point(198, 123);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(282, 13);
             this.label11.TabIndex = 14;
@@ -227,6 +227,7 @@
             this.Name = "CreateNewAccount";
             this.Text = "CreateNewAccount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateNewAccount_Closed);
+            this.Load += new System.EventHandler(this.CreateNewAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +251,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+
     }
 
 }

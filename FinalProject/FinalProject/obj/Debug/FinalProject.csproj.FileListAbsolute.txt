@@ -12,4 +12,32 @@ C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProje
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.Verify.resources
 C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\WindowsFormsApp2.View_Item.resources
-C:\Users\beklybor\Documents\Semester 5 Fall 2017\CS_275\Final Project\FinalProject\FinalProject\obj\Debug\FinalProject.CreateNewAccount.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.exe.config
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\bin\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csprojResolveAssemblyReference.cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.AddItem.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.CARD.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Properties.Resources.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.Verify.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\WindowsFormsApp2.View_Item.resources
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.GenerateResource.Cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\bin\Debug\FinalProject.exe.config
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\bin\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\bin\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.csprojResolveAssemblyReference.cache
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.AddItem.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.CARD.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Properties.Resources.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Verify.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\WindowsFormsApp2.View_Item.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.GenerateResource.Cache
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.exe
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.CreateNewAccount.resources
