@@ -8,13 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp2
+namespace FinalProject
 {
     public partial class View_Item : Form
     {
-        public View_Item()
+        private string _name;
+        private string _desc;
+
+
+        public View_Item(Item item)
         {
+            _name = item.getName();
+            _desc = item.getDesc();
+
             InitializeComponent();
+
+            textBox1.Text = _name;
+            textBox2.Text = _desc;
         }
 
         OpenFileDialog ofd = new OpenFileDialog();
@@ -64,6 +74,16 @@ namespace WindowsFormsApp2
         }
 
         private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
