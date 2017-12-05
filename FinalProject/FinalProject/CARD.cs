@@ -102,7 +102,7 @@ namespace FinalProject
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -267,6 +267,18 @@ namespace FinalProject
         {
             _login.clear();
             _login.Show();
+        }
+
+        //Opens View Item
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //only one item at a time can be selected
+            listView3.MultiSelect = false;
+            string name = listView3.SelectedItems[0].SubItems[0].Text;
+            //search collection for item and retrieve it
+            Item item = _collection.getItem(name);
+            item.open_view();
+
         }
     }
 }
