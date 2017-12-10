@@ -150,6 +150,16 @@ namespace FinalProject
                     OleDbConnection conn = new OleDbConnection(_connectionString);
                     OleDbCommand addItem = conn.CreateCommand();
                     conn.Open();
+                    if (_name.Contains("'"))
+                    {
+                        _name = _name.Replace("'", "''");
+                        Console.WriteLine(_name);
+                    }//else if (_name.Contains("//"){ }
+                    if (_set.Contains("'"))
+                    {
+                        _set = _name.Replace("'", "''");
+                        Console.WriteLine(_name);
+                    }
                     addItem = new OleDbCommand("INSERT INTO [Collection] ([Username], [ItemName], [Description], [Category], [Condition], [Price], [Count]) VALUES('" + username + "', '" + _name + "', '" + _desc + "', '" + _category + "', '" + _condition + "', '" + _price + "', '" + _count + "')", conn);
                     addItem.ExecuteScalar();
                     conn.Close();
