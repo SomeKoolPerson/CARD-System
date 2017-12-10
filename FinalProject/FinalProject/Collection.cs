@@ -23,49 +23,51 @@ namespace FinalProject
         // returns the Item object associated with the given name
         public Item getItem(String name)
         {
-            Item toReturn = null;
             foreach (Item item in _collection)
             {
-                if (item.getName().Equals(name))
+                String name2 = item.getName();
+                if (name2.Equals(name))
                 {
-                    toReturn = item;
+                    return item;
                 }
-                break;
             }
-            return toReturn;
+            return null;
         }
         public void AddItem(Item item) { _collection.Add(item); calcTotalValue(); }
-        public void RemoveItem(Item item)
+        public void RemoveItem(String itemName)
         {
-            foreach (Item eachitem in _collection)
+            Boolean removed =_collection.Remove(getItem(itemName));
+            if (removed == true)
             {
-                if (item.getName().Equals(eachitem.getName()))
-                {
-                    _collection.Remove(eachitem);
-                }
-                break;
-            }
-            calcTotalValue();
+                calcTotalValue();
+            } 
         }
-        public void RemoveItems(Item item)
+        public void RemoveItems(String itemName)
         {
             foreach (Item eachitem in _collection)
             {
-                if (item.getName().Equals(eachitem.getName()))
+                if (getItem(itemName).getName().Equals(eachitem.getName()))
                 {
                     _collection.Remove(eachitem);
+                    break;
                 }
             }
             calcTotalValue();
         }
+
+        // updates the total value of the collection
         public void calcTotalValue()
         {
             double total = 0;
             foreach (Item eachitemm in _collection)
             {
-                total += eachitemm.getPrice();
+                total += (eachitemm.getPrice() * eachitemm.getCount());
             }
             _totalValue = total;
+        }
+        public void addToTotal(double toAdd)
+        {
+            _totalValue += toAdd;
         }
     }
 }

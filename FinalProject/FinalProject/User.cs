@@ -8,18 +8,18 @@ namespace FinalProject
 {
     public class User
     {
-        private String _username;
-        private String _password;
-        private String _email;
+        private string _username;
+        private string _password;
+        private string _email;
         private Collection _collection;
-        public User(String name, String password, String email)
+        public User(string name, string password, string email)
         {
             _username = name;
             _password = password;
             _email = email;
             _collection = new Collection();
         }
-        public User(String name, String password, String email, Collection collection)
+        public User(string name, string password, string email, Collection collection)
         {
             _username = name;
             _password = password;
@@ -27,14 +27,14 @@ namespace FinalProject
             _collection = collection;
         }
 
-        public void setUsename(String username) { _username = username; }
-        public void setEmail(String email) { _email = email; }
-        public void setPassword(String password) { _password = password; }
+        public void setUsename(string username) { _username = username; }
+        public void setEmail(string email) { _email = email; }
+        public void setPassword(string password) { _password = password; }
         public void setCollection(Collection col) { _collection = col; }
 
-        public String getUsername() { return _username; }
-        public String getEmail() { return _email; }
-        public String getPassword() { return _password; }
+        public string getUsername() { return _username; }
+        public string getEmail() { return _email; }
+        public string getPassword() { return _password; }
         public Collection GetCollection() { return _collection; }
     }
 }

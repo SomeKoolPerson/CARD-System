@@ -13,20 +13,33 @@ namespace FinalProject
         private double _price;
         private String _condition;
         private String _category;
+        private int _count;
 
-        public Item(String name, String desc, String condition, String category, double price)
+        public Item(String name, String desc, String condition, String category, double price, int count)
         {
             _name = name;
             _desc = desc;
             _condition = condition;
             _category = category;
             _price = price;
+            _count = count;
         }
         public String getName() { return _name; }
         public String getDesc() { return _desc; }
         public String getCondition() { return _condition; }
         public String getCategory() { return _category; }
         public double getPrice() { return _price; }
+        public int getCount() { return _count; }
+        public void setCount(int count) { _count =count; }
 
+        public void setPrice(double price) { _price = price; }
+        public void IncrementCount()
+        {
+            _count++; 
+        }
+        public void DecrementCount()
+        {
+            _count--;
+        }
     }
 }

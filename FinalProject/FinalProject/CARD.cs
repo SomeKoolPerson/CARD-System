@@ -28,6 +28,11 @@ namespace FinalProject
         private Login _login;
         private Verify _verify;
 
+        public User getUser()
+        {
+            return _user;
+        }
+
         public CARD(String username, String email, String password, Login login, String connectionString)
         {
             _login = login;
@@ -38,9 +43,20 @@ namespace FinalProject
             _user = new User(username, password, email);
             _collection = new Collection();
 
+            pullCollection();
+            _user.setCollection(_collection);
+            InitializeComponent();
+            initializeCollection();
+            calcTotValue();
+            initializeAccount();
+
+        }
+
+        public void pullCollection()
+        {
             OleDbConnection conn = new OleDbConnection(_connectionString);
             OleDbCommand getCollection = conn.CreateCommand();
-            getCollection = new OleDbCommand("SELECT ItemName, Description, Category, Condition, Price FROM Collection WHERE Collection.Username = '" + _username + "'", conn);
+            getCollection = new OleDbCommand("SELECT ItemName, Description, Category, Condition, Price, Count FROM Collection WHERE Collection.Username = '" + _username + "'", conn);
             conn.Open();
             OleDbDataReader reader = getCollection.ExecuteReader();
 
@@ -51,37 +67,33 @@ namespace FinalProject
                 String description = reader[1].ToString();
                 String category = reader[2].ToString();
                 String condition = reader[3].ToString();
-                String sPrice = reader[4].ToString(); 
+                String sPrice = reader[4].ToString();
                 double price = Convert.ToDouble(sPrice);
+                int count = Int32.Parse(reader[5].ToString());
 
-                Item item = new Item(itemName, description, condition, category, price);
+                Item item = new Item(itemName, description, condition, category, price, count);
 
                 _collection.AddItem(item);
             }
             conn.Close();
-            _user.setCollection(_collection);
-            InitializeComponent();
-            initializeCollection();
-            calcTotValue();
-            initializeAccount();
-
         }
 
         // get the Collection associated with the current user
         public void initializeCollection() {
             List<Item> col = _collection.getCollection();
             listView3.Items.Clear();
+            listView1.Items.Clear();
             foreach (Item eachitem in col)
             {
                 ListViewItem fullitem = new ListViewItem(eachitem.getName());
                 fullitem.SubItems.Add(eachitem.getDesc());
-                fullitem.SubItems.Add("1");
-                fullitem.SubItems.Add(Convert.ToString(eachitem.getPrice()));
+                fullitem.SubItems.Add("$" + Convert.ToString(eachitem.getPrice()));
+                fullitem.SubItems.Add(Convert.ToString(eachitem.getCount()));
                 listView3.Items.Add(fullitem);
 
                 ListViewItem shortItem = new ListViewItem(eachitem.getName());
-                shortItem.SubItems.Add("1");
-                shortItem.SubItems.Add(Convert.ToString(eachitem.getPrice()));
+                shortItem.SubItems.Add("$" + Convert.ToString(eachitem.getPrice()));
+                shortItem.SubItems.Add(Convert.ToString(eachitem.getCount()));
                 listView1.Items.Add(shortItem);
             }
             listView3.Columns[0].TextAlign = HorizontalAlignment.Left;
@@ -112,16 +124,40 @@ namespace FinalProject
         // removes selected items from the collection
         private void button9_Click(object sender, EventArgs e)
         {
-            ListView.SelectedListViewItemCollection items = listView1.SelectedItems;
+            ListView.SelectedListViewItemCollection items = listView3.SelectedItems;
             foreach (ListViewItem eachitem in items){
                 String itemName = eachitem.Text;
-                _collection.RemoveItem(_collection.getItem(itemName));
+                OleDbConnection conn = new OleDbConnection(_connectionString);
+                conn.Open();
+                OleDbCommand find = new OleDbCommand("SELECT Count FROM  Collection WHERE Username ='" + _username + "' AND ItemName='" + itemName + "'",conn);
+                OleDbDataReader reader = find.ExecuteReader();
+                reader.Read();
+                int count = Int32.Parse(reader[0].ToString());
+                if (count>1)
+                {
+                    _collection.getItem(itemName).DecrementCount();
+                    count--;
+                    OleDbCommand repush = conn.CreateCommand();
+                    repush = new OleDbCommand("UPDATE [Collection] SET [Count]='" + count + "' WHERE Username='" + _user.getUsername() + "' AND ItemName='" + itemName + "'", conn);
+                    repush.ExecuteScalar();
+                    reader.Close();
+                }
+                else
+                {
+                    _collection.RemoveItem(itemName);
+                    OleDbCommand remove = conn.CreateCommand();
+                    remove = new OleDbCommand("DELETE FROM Collection Where Username='" + _username + "' AND ItemName= '" + itemName + "'", conn);
+                    remove.ExecuteScalar();
+                    reader.Close();
+                }
             }
             initializeCollection();
             calcTotValue();
+
         }
 
         public void calcTotValue() {
+            _collection.calcTotalValue();
             double totalValue = _collection.getTotalValue();
             label5.Text = "$" + Convert.ToString(totalValue);
         }
@@ -255,30 +291,62 @@ namespace FinalProject
             button5.Enabled = true;
             button10.Enabled = true;
         }
-
+        /**
         // adds a new item to the collection
         private void button7_Click(object sender, EventArgs e)
         {
             AddItem addItem = new AddItem(_user.GetCollection(), this, button7);
             addItem.Show();
             button7.Enabled = false;
-        }
+        }*/
         private void CARD_Closed(object sender, FormClosedEventArgs e)
         {
             _login.clear();
             _login.Show();
         }
 
-        //Opens View Item
-        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            //only one item at a time can be selected
-            listView3.MultiSelect = false;
-            string name = listView3.SelectedItems[0].SubItems[0].Text;
-            //search collection for item and retrieve it
-            Item item = _collection.getItem(name);
-            item.open_view();
+            AddItem AddItem = new AddItem(_user,this, button7, _connectionString);
+            AddItem.Show();
+            button7.Enabled = false;
+        }
+
+        private void CARD_Load(object sender, EventArgs e)
+        {
 
         }
+
+        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        // updates the prices of the items in the collection in the Collection object and on the database
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /**List<Item> col = _collection.getCollection();
+            MakeMTGCard make = new MakeMTGCard();
+            foreach (Item item in col)
+            {
+                if (item.getCategory().Equals("Magic: The Gathering Card"))
+                {
+                    
+                }
+            }*/
+        }
+        
+        //Opens View Item
+        /**private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             //only one item at a time can be selected
+             listView3.MultiSelect = false;
+             string name = listView3.SelectedItems[0].SubItems[0].Text;
+             //search collection for item and retrieve it
+             Item item = _collection.getItem(name);
+             item.open_view();
+
+         }*/
     }
 }

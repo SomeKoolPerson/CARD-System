@@ -35,9 +35,9 @@ C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProj
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Login.resources
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Properties.Resources.resources
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.Verify.resources
-C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\WindowsFormsApp2.View_Item.resources
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.GenerateResource.Cache
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.csproj.CoreCompileInputs.cache
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.exe
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.pdb
 C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.CreateNewAccount.resources
+C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\FinalProject\obj\Debug\FinalProject.View_Item.resources

@@ -7,18 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Data.OleDb;
+using FinalProject.Properties;
 
 namespace FinalProject
 {
@@ -30,15 +23,21 @@ namespace FinalProject
         private String _condition;
         private String _set;
         private String _category;
+        private int _count;
         private Collection _collection;
         private CARD _card;
         private Button _button;
-        public AddItem(Collection collection, CARD card, Button button)
+        private User _user;
+        private String _connectionString;
+        public AddItem(User user, CARD card, Button button, String connectionString)
         {
             _card = card;
-            _collection = collection;
+            _collection = user.GetCollection();
             _button = button;
+            _connectionString = connectionString;
+            _user = user;
             InitializeComponent();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -59,6 +58,7 @@ namespace FinalProject
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             _name = textBox1.Text;
+            _name = _name.Replace(' ', '_');
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -72,12 +72,64 @@ namespace FinalProject
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            MakeMTGCard make = new MakeMTGCard(_name, _set, _desc, _condition, _category);
-            MagicCard card = make.Make();
-            _collection.AddItem(card);
-            _card.initializeCollection();
-            _card.calcTotValue();
-            _button.Enabled = true;
+            Boolean inCollection = false;
+            _count = Int32.Parse(textBox3.Text);
+            List<Item> items = _collection.getCollection();
+            foreach (Item item in items)
+            {
+                if(item.getName().Equals(_name))
+                {
+                    inCollection = true;
+                }
+            }
+            // when the item is already in the collection
+            if (inCollection == true)
+            {
+                _name = textBox1.Text;
+                _name = _name.Replace(' ', '_');
+                string userName = _user.getUsername();
+                foreach (Item item in items)
+                {
+                    Console.WriteLine(item.getName());
+                }
+                Item temp = _collection.getItem(_name);
+                temp.IncrementCount();
+                OleDbConnection conn = new OleDbConnection(_connectionString);
+                OleDbCommand increment = conn.CreateCommand();
+                conn.Open();
+                increment = new OleDbCommand("SELECT Count FROM Collection WHERE Username = '" + _user.getUsername() + "' AND ItemName = '" + _name + "'", conn);
+                OleDbDataReader reader = increment.ExecuteReader();
+                reader.Read();
+                int count = Int32.Parse(reader[0].ToString());
+                count++;
+                reader.Close();
+                OleDbCommand repush = conn.CreateCommand();
+                repush = new OleDbCommand("UPDATE [Collection] SET [Count]='" + count + "' WHERE Username='" + _user.getUsername() + "' AND ItemName='" + _name + "'", conn);
+                repush.ExecuteScalar();
+                conn.Close();
+                _collection.getItem(_name).setCount(count);
+                _collection.addToTotal(_collection.getItem(_name).getPrice());
+                _card.calcTotValue();
+                _card.initializeCollection();
+
+            }
+            else // when adding a new item
+            {
+
+                MakeMTGCard make = new MakeMTGCard(_name, _set, _desc, _condition, _category, _count);
+                MagicCard card = make.Make();
+                _price = card.getPrice();
+                _collection.AddItem(card);
+                _card.initializeCollection();
+                _card.calcTotValue();
+                string username = _user.getUsername();
+                OleDbConnection conn = new OleDbConnection(_connectionString);
+                OleDbCommand addItem = conn.CreateCommand();
+                conn.Open();
+                addItem = new OleDbCommand("INSERT INTO [Collection] ([Username], [ItemName], [Description], [Category], [Condition], [Price], [Count]) VALUES('" + username + "', '" + _name + "', '" + _desc + "', '" + _category + "', '" + _condition + "', '" + _price + "', '" + _count + "')", conn);
+                addItem.ExecuteScalar();
+                conn.Close();
+            }
             this.Close();
         }
         private void AddItem_Closed(object sender, FormClosedEventArgs e)
@@ -93,6 +145,13 @@ namespace FinalProject
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             _set = textBox2.Text;
+            _set = _set.Replace(' ', '_');
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
+
 }

@@ -20,8 +20,8 @@ namespace FinalProject
         private String _strength;
         private String _type;
         private String _releaseYear;
-        public MagicCard(String name, String desc, String category, String condition, double price)
-            :base(name, desc, category, condition, price)
+        public MagicCard(String name, String desc, String category, String condition, double price, int count)
+            :base(name, desc, category, condition, price, count)
         {
             _name = name;
             _desc = desc;

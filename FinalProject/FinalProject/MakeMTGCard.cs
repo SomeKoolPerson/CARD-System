@@ -20,20 +20,27 @@ namespace FinalProject
         private string _desc;
         private string _condition;
         private string _category;
+        private int _count;
         private string url;
 
-        public MakeMTGCard(string name, string set, string description, string condition, string category)
+        public MakeMTGCard(string name, string set, string description, string condition, string category, int count)
         {
             _name = name;
             _set = set;
             _desc = description;
             _condition = condition;
             _category = category;
+            _count = count;
+            url = "http://www.mtgprice.com/sets/" + _set + "/" + _name;
+        }
+
+        public MakeMTGCard()
+        {
             url = "http://www.mtgprice.com/sets/" + _set + "/" + _name;
         }
 
         // returns the price of the MTG card
-        private double pullPrice()
+        public double pullPrice()
         {
             WebClient web = new WebClient();
             WebRequest request = WebRequest.Create(url);
@@ -45,6 +52,23 @@ namespace FinalProject
                 html = sr.ReadToEnd();
             }
             String price = Parse(html, "&nbsp-&nbsp$", "&nbsp &nbsp");
+            Console.WriteLine(price);
+            return Convert.ToDouble(price);
+        }
+
+        public double pullPrice(String name, String set)
+        {
+            WebClient web = new WebClient();
+            WebRequest request = WebRequest.Create(url);
+            WebResponse response = request.GetResponse();
+            Stream data = response.GetResponseStream();
+            string html = String.Empty;
+            using (StreamReader sr = new StreamReader(data))
+            {
+                html = sr.ReadToEnd();
+            }
+            String price = Parse(html, "&nbsp-&nbsp$", "&nbsp &nbsp");
+            Console.WriteLine(price);
             return Convert.ToDouble(price);
         }
 
@@ -62,7 +86,7 @@ namespace FinalProject
         public MagicCard Make()
         {
             double price = pullPrice();
-            MagicCard card = new MagicCard(_name, _desc, _category, _condition, price);
+            MagicCard card = new MagicCard(_name, _desc, _category, _condition, price, _count);
             return card;
         }
     }
