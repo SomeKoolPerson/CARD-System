@@ -58,7 +58,7 @@ namespace FinalProject
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             _name = textBox1.Text;
-            _name = _name.Replace(' ', '_');
+            //_name = _name.Replace(' ', '_');
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -86,8 +86,17 @@ namespace FinalProject
             if (inCollection == true)
             {
                 _name = textBox1.Text;
-                _name = _name.Replace(' ', '_');
+                //_name = _name.Replace(' ', '_');
                 string userName = _user.getUsername();
+                int addNumber;
+                try
+                {
+                    addNumber = Int32.Parse(textBox3.Text);
+                }
+                catch
+                {
+                    addNumber = 1;
+                }
                 foreach (Item item in items)
                 {
                     Console.WriteLine(item.getName());
@@ -101,36 +110,55 @@ namespace FinalProject
                 OleDbDataReader reader = increment.ExecuteReader();
                 reader.Read();
                 int count = Int32.Parse(reader[0].ToString());
-                count++;
+                count += addNumber;
                 reader.Close();
                 OleDbCommand repush = conn.CreateCommand();
                 repush = new OleDbCommand("UPDATE [Collection] SET [Count]='" + count + "' WHERE Username='" + _user.getUsername() + "' AND ItemName='" + _name + "'", conn);
                 repush.ExecuteScalar();
                 conn.Close();
                 _collection.getItem(_name).setCount(count);
+                
                 _collection.addToTotal(_collection.getItem(_name).getPrice());
+                _collection.getItem(_name).setName(_name.Replace('_', ' '));
                 _card.calcTotValue();
                 _card.initializeCollection();
+                this.Close();
 
             }
             else // when adding a new item
             {
-
+                _name = _name.Replace(' ','_');
                 MakeMTGCard make = new MakeMTGCard(_name, _set, _desc, _condition, _category, _count);
-                MagicCard card = make.Make();
-                _price = card.getPrice();
-                _collection.AddItem(card);
-                _card.initializeCollection();
-                _card.calcTotValue();
-                string username = _user.getUsername();
-                OleDbConnection conn = new OleDbConnection(_connectionString);
-                OleDbCommand addItem = conn.CreateCommand();
-                conn.Open();
-                addItem = new OleDbCommand("INSERT INTO [Collection] ([Username], [ItemName], [Description], [Category], [Condition], [Price], [Count]) VALUES('" + username + "', '" + _name + "', '" + _desc + "', '" + _category + "', '" + _condition + "', '" + _price + "', '" + _count + "')", conn);
-                addItem.ExecuteScalar();
-                conn.Close();
+                string price = make.pullPrice();
+                //validates that a price was found and throws a spelling error if not
+                if (price.Equals(""))
+                {
+                    label7.Visible = true;
+                    label8.Visible = true;
+                }
+                else
+                {
+                    MagicCard card = make.Make(Convert.ToDouble(price));
+                    _price = card.getPrice();
+                    _name = _name.Replace('_', ' ');
+                    card.setName(_name);
+                    _collection.AddItem(card);
+                    _card.initializeCollection();
+                    _card.calcTotValue();
+                    //_collection.getItem(_name).setName(_name.Replace('_', ' '));
+                    string username = _user.getUsername();
+                    OleDbConnection conn = new OleDbConnection(_connectionString);
+                    OleDbCommand addItem = conn.CreateCommand();
+                    conn.Open();
+                    addItem = new OleDbCommand("INSERT INTO [Collection] ([Username], [ItemName], [Description], [Category], [Condition], [Price], [Count]) VALUES('" + username + "', '" + _name + "', '" + _desc + "', '" + _category + "', '" + _condition + "', '" + _price + "', '" + _count + "')", conn);
+                    addItem.ExecuteScalar();
+                    conn.Close();
+                    this.Close();
+
+                }
+   
             }
-            this.Close();
+            
         }
         private void AddItem_Closed(object sender, FormClosedEventArgs e)
         {
@@ -152,6 +180,20 @@ namespace FinalProject
         {
             
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+        public Label getLabel7() { return label7; }
+        public Label getLabel8() { return label8; }
+
     }
+
 
 }

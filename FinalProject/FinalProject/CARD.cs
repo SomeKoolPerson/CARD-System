@@ -326,15 +326,18 @@ namespace FinalProject
         // updates the prices of the items in the collection in the Collection object and on the database
         private void button2_Click(object sender, EventArgs e)
         {
-            /**List<Item> col = _collection.getCollection();
+            List<Item> col = _collection.getCollection();
             MakeMTGCard make = new MakeMTGCard();
             foreach (Item item in col)
             {
-                if (item.getCategory().Equals("Magic: The Gathering Card"))
+                if (item.getCategory().Equals("Magic The Gathering Cards"))
                 {
-                    
+                    MagicCard card = (MagicCard)item;
+                    double price = make.pullPrice(card.getName(), card.getSet());
+                    Console.WriteLine(price);
+                    card.setPrice(price);
                 }
-            }*/
+            }
         }
         
         //Opens View Item

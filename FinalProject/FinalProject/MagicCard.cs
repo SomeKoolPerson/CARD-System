@@ -31,17 +31,6 @@ namespace FinalProject
             _color = new String[5];
         }
 
-        public string Name { get => _name; set => _name = value; }
-        public string Desc { get => _desc; set => _desc = value; }
-        public string Category { get => _category; set => _category = value; }
-        public string Condition { get => _condition; set => _condition = value; }
-        public double Price { get => _price; set => _price = value; }
-        public string Set { get => _set; set => _set = value; }
-        public string[] Color { get => _color; set => _color = value; }
-        public bool IsMultiColor { get => _isMultiColor; set => _isMultiColor = value; }
-        public string Power { get => _power; set => _power = value; }
-        public string Strength { get => _strength; set => _strength = value; }
-        public string Type { get => _type; set => _type = value; }
-        public string ReleaseYear { get => _releaseYear; set => _releaseYear = value; }
+        public String getSet() { return _set; }
     }
 }

@@ -40,7 +40,7 @@ namespace FinalProject
         }
 
         // returns the price of the MTG card
-        public double pullPrice()
+        public string pullPrice()
         {
             WebClient web = new WebClient();
             WebRequest request = WebRequest.Create(url);
@@ -53,11 +53,13 @@ namespace FinalProject
             }
             String price = Parse(html, "&nbsp-&nbsp$", "&nbsp &nbsp");
             Console.WriteLine(price);
-            return Convert.ToDouble(price);
+            return price;
         }
 
         public double pullPrice(String name, String set)
         {
+            _set = set;
+            _name = name;
             WebClient web = new WebClient();
             WebRequest request = WebRequest.Create(url);
             WebResponse response = request.GetResponse();
@@ -83,9 +85,8 @@ namespace FinalProject
             return toReturn;
         }
 
-        public MagicCard Make()
+        public MagicCard Make(double price)
         {
-            double price = pullPrice();
             MagicCard card = new MagicCard(_name, _desc, _category, _condition, price, _count);
             return card;
         }
