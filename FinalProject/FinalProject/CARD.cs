@@ -107,9 +107,10 @@ namespace FinalProject
             _username = _user.getUsername();
             _email = _user.getEmail();
             _password = _user.getPassword();
-            label7.Text = _username ;
-            label8.Text = _email;
-            label9.Text = _password;
+
+            textBox1.Text = _username;
+            textBox2.Text = _email;
+            textBox3.Text = _password;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,103 +195,8 @@ namespace FinalProject
             }
         }
 
-        // change username
-        private void button5_Click(object sender, EventArgs e)
-        {
-            button10.Enabled = false;
-            button11.Enabled = false;
-            label1.Text = "New Username:";
-            label7.Visible = false;
-            textBox1.Visible = true;
-            textBox1.Enabled = true;
-            textBox1.Text = label7.Text;
-            button5.Visible = false;
-            button5.Enabled = false;
-            button6.Visible = true;
-            button6.Enabled = true;
-        }
-        // confirm username
-        private void button6_Click(object sender, EventArgs e)
-        {
-            label1.Text = "Username:";
-            _username = textBox1.Text;
-            label7.Text = _username;
-            label7.Visible = true;
-            textBox1.Visible = false;
-            textBox1.Enabled = false;
-            textBox1.Text = "";
-            button5.Visible = true;
-            button5.Enabled = true;
-            button6.Visible = false;
-            button6.Enabled = false;
-            button10.Enabled = true;
-            button11.Enabled = true;
-        }
-        // change email
-        private void button10_Click(object sender, EventArgs e)
-        {
-            button5.Enabled = false;
-            button11.Enabled = false;
-            label2.Text = "New Email:";
-            label8.Visible = false;
-            textBox2.Visible = true;
-            textBox2.Enabled = true;
-            textBox2.Text = label8.Text;
-            button10.Visible = false;
-            button10.Enabled = false;
-            button12.Visible = true;
-            button12.Enabled = true;
-        }
-        // confirm email
-        private void button12_Click(object sender, EventArgs e)
-        {
-            label2.Text = "Email:";
-            _email = textBox2.Text;
-            label8.Text = _email;
-            label8.Visible = true;
-            textBox2.Visible = false;
-            textBox2.Enabled = false;
-            textBox2.Text = "";
-            button10.Visible = true;
-            button10.Enabled = true;
-            button12.Visible = false;
-            button12.Enabled = false;
-            button5.Enabled = true;
-            button11.Enabled = true;
-        }
-        // change password
-        private void button11_Click(object sender, EventArgs e)
-        {
-            button5.Enabled = false;
-            button10.Enabled = false;
-            label3.Text = "New Password:";
-            label9.Visible = false;
-            textBox3.Visible = true;
-            textBox3.Enabled = true;
-            textBox3.Text = label9.Text;
-            button11.Visible = false;
-            button11.Enabled = false;
-            button13.Visible = true;
-            button13.Enabled = true;
+        
 
-        }
-        // confirm password
-        private void button13_Click(object sender, EventArgs e)
-        {
-            label3.Text = "Password:";
-            _password = textBox3.Text;
-            label9.Text = _password;
-            label9.Visible = true;
-            textBox3.Visible = false;
-            textBox3.Enabled = false;
-            textBox3.Text = "";
-            button11.Visible = true;
-            button11.Enabled = true;
-            button13.Visible = false;
-            button13.Enabled = false;
-            button5.Enabled = true;
-            button10.Enabled = true;
-        }
         /**
         // adds a new item to the collection
         private void button7_Click(object sender, EventArgs e)
@@ -342,6 +248,109 @@ namespace FinalProject
             String name = listView3.SelectedItems[0].SubItems[0].Text;
             Item item = _collection.getItem(name);
             item.open_view();
+        }
+
+        // change username and update database with new username
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Enabled == true)
+            {
+                CreateNewAccount create = new CreateNewAccount(_connectionString, _login);
+                create.Visible = false;
+                if (!_username.Equals(textBox1.Text)) {
+                    if (create.validUsername(textBox1.Text))
+                    {
+                        OleDbConnection conn = new OleDbConnection(_connectionString);
+                        OleDbCommand updateUsername = conn.CreateCommand();
+                        conn.Open();
+                        updateUsername = new OleDbCommand("UPDATE [Users] SET [Username]='" + textBox1.Text + "' WHERE [Username]='" + _username + "'", conn);
+                        updateUsername.ExecuteScalar();
+                        OleDbCommand updateCollection = conn.CreateCommand();
+                        updateCollection = new OleDbCommand("UPDATE [Collection] SET [Username]='" + textBox1.Text + "' WHERE [Username]='" + _username + "'", conn);
+                        updateCollection.ExecuteScalar();
+                        conn.Close();
+                        _username = textBox1.Text;
+                        _user.setUsername(_username);
+                    }
+                }
+                textBox1.Enabled = false;
+                button10.Enabled = true;
+                button11.Enabled = true;
+                button5.Text = "Change";
+            }
+            else
+            {
+                textBox1.Enabled = true;
+                button5.Text = "Confirm";
+                button10.Enabled = false;
+                button11.Enabled = false;
+            }
+
+        }
+
+        // change email and update database with new email
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Enabled == true)
+            {
+                CreateNewAccount create = new CreateNewAccount(_connectionString, _login);
+                create.Visible = false;
+                if (create.validEmail(textBox2.Text))
+                {
+                    OleDbConnection conn = new OleDbConnection(_connectionString);
+                    OleDbCommand updateUsername = conn.CreateCommand();
+                    conn.Open();
+                    updateUsername = new OleDbCommand("UPDATE [Users] SET [Email]='" + textBox2.Text + "' WHERE [Username]='" + _username + "'", conn);
+                    updateUsername.ExecuteScalar();
+                    conn.Close();
+                    _email = textBox2.Text;
+                    _user.setEmail(_email);
+                    textBox2.Enabled = false;
+                    button5.Enabled = true;
+                    button11.Enabled = true;
+                    button10.Text = "Change";
+                }
+            }
+            else
+            {
+                textBox2.Enabled = true;
+                button10.Text = "Confirm";
+                button5.Enabled = false;
+                button11.Enabled = false;
+            }
+        }
+
+        // change password and update database with new password
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Enabled == true)
+            {
+                CreateNewAccount create = new CreateNewAccount(_connectionString, _login);
+                create.Visible = false;
+                if (create.validPassword(textBox3.Text))
+                {
+                    OleDbConnection conn = new OleDbConnection(_connectionString);
+                    OleDbCommand updateUsername = conn.CreateCommand();
+                    conn.Open();
+                    updateUsername = new OleDbCommand("UPDATE [Users] SET [Password]='" + textBox3.Text + "' WHERE [Username]='" + _username + "'", conn);
+                    updateUsername.ExecuteScalar();
+                    conn.Close();
+
+                    _password = textBox3.Text;
+                    _user.setPassword(_password);
+                    textBox3.Enabled = false;
+                    button5.Enabled = true;
+                    button10.Enabled = true;
+                    button11.Text = "Change";
+                }
+            }
+            else
+            {
+                textBox3.Enabled = true;
+                button11.Text = "Confirm";
+                button5.Enabled = false;
+                button10.Enabled = false;
+            }
         }
 
         //Opens View Item
