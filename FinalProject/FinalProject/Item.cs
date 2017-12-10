@@ -31,8 +31,14 @@ namespace FinalProject
         public double getPrice() { return _price; }
         public int getCount() { return _count; }
         public void setCount(int count) { _count =count; }
-
+        public void setName(String name) { _name = name; }
         public void setPrice(double price) { _price = price; }
+
+        public void open_view()
+        {
+            View_Item view = new View_Item(this);
+        }
+
         public void IncrementCount()
         {
             _count++; 
@@ -41,6 +47,5 @@ namespace FinalProject
         {
             _count--;
         }
-        public void setName(String name) { _name = name; }
     }
 }

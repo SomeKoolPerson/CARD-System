@@ -326,22 +326,26 @@ namespace FinalProject
         // updates the prices of the items in the collection in the Collection object and on the database
         private void button2_Click(object sender, EventArgs e)
         {
-            List<Item> col = _collection.getCollection();
+            /**List<Item> col = _collection.getCollection();
             MakeMTGCard make = new MakeMTGCard();
             foreach (Item item in col)
             {
-                if (item.getCategory().Equals("Magic The Gathering Cards"))
+                if (item.getCategory().Equals("Magic: The Gathering Card"))
                 {
-                    MagicCard card = (MagicCard)item;
-                    double price = make.pullPrice(card.getName(), card.getSet());
-                    Console.WriteLine(price);
-                    card.setPrice(price);
+                    
                 }
-            }
+            }*/
         }
-        
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            String name = listView3.SelectedItems[0].SubItems[0].Text;
+            Item item = _collection.getItem(name);
+            item.open_view();
+        }
+
         //Opens View Item
-        /**private void listView3_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void listView3_SelectedIndexChanged(object sender, EventArgs e)
          {
              //only one item at a time can be selected
              listView3.MultiSelect = false;
