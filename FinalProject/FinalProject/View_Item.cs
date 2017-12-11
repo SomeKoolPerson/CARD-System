@@ -14,17 +14,29 @@ namespace FinalProject
     {
         private string _name;
         private string _desc;
+        private Item _item;
 
 
         public View_Item(Item item)
         {
             _name = item.getName();
             _desc = item.getDesc();
+            _item = item;
 
             InitializeComponent();
 
             textBox1.Text = _name;
             textBox2.Text = _desc;
+            textBox2.Text += "\nPrice: " + item.getPrice();
+            textBox2.Text += "\nNumber: "+ item.getCount();
+
+            richTextBox1.ResetText();
+            for (int i = 0; i < _item.getLog().Count; i++)
+            {
+                richTextBox1.Text += _item.getLog()[i].Item1 + ": \n" + "Price change: " + _item.getLog()[i].Item2.ToString() + "\n";
+                this.chart1.Series["Value"].Points.AddXY(_item.getLog()[i].Item1, _item.getLog()[i].Item2);
+            }
+
         }
 
         OpenFileDialog ofd = new OpenFileDialog();
@@ -85,7 +97,19 @@ namespace FinalProject
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            String newText = textBox2.Text;
+            _item.setDesc(newText);
+        }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
         }
     }
 }

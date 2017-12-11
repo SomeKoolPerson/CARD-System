@@ -14,6 +14,7 @@ namespace FinalProject
         private String _condition;
         private String _category;
         private int _count;
+        private List<Tuple<String, double>> changeLog;
 
         public Item(String name, String desc, String condition, String category, double price, int count)
         {
@@ -29,14 +30,18 @@ namespace FinalProject
         public String getCondition() { return _condition; }
         public String getCategory() { return _category; }
         public double getPrice() { return _price; }
+        public List<Tuple<String, double>> getLog() {return changeLog;}
         public int getCount() { return _count; }
         public void setCount(int count) { _count =count; }
         public void setName(String name) { _name = name; }
+        public void setDesc(String desc) {_desc = desc;}
         public void setPrice(double price) { _price = price; }
+        public void addChange(Tuple<String, double> change) { changeLog.Add(change); }
 
         public void open_view()
         {
             View_Item view = new View_Item(this);
+            view.Show();
         }
 
         public void IncrementCount()
