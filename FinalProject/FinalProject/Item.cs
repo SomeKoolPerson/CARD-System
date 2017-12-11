@@ -24,6 +24,7 @@ namespace FinalProject
             _category = category;
             _price = price;
             _count = count;
+            changeLog = new List<Tuple<string, double>>();
         }
         public String getName() { return _name; }
         public String getDesc() { return _desc; }

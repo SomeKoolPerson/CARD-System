@@ -14,6 +14,18 @@ namespace FinalProject
         public Collection()
         {
             _collection = new List<Item>();
+            Item test = new Item("Black Lotus", "Adds 3 mana of any single color of your choice" +
+                " to your mana pool,then is dicarded. Tapping this aftifact can be played as an interrupt.","Mint","Artifact",7499.99,1);
+            var c1 = new Tuple<String, double>("Sep-07", 7394.65);
+            var c3 = new Tuple<String, double>("Oct-17", 7142.75);
+            var c6 = new Tuple<String, double>("Dec-03", 7578.47);
+            var c7 = new Tuple<String, double>("Dec-11", 7499.99);
+            test.addChange(c1);
+            test.addChange(c3);
+            test.addChange(c6);
+            test.addChange(c7);
+
+            _collection.Add(test);
         }
 
         public Collection(Collection col) { _collection = col.getCollection(); calcTotalValue(); }

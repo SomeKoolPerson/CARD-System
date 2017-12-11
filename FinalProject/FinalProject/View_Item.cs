@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,15 +29,17 @@ namespace FinalProject
 
             textBox1.Text = _name;
             textBox2.Text = _desc;
-            textBox2.Text += "\nPrice: " + item.getPrice();
-            textBox2.Text += "\nNumber: "+ item.getCount();
+            textBox2.Text += "\r\nPrice: $" + item.getPrice();
+            textBox2.Text += "\r\nNumber: "+ item.getCount();
 
             richTextBox1.ResetText();
             for (int i = 0; i < _item.getLog().Count; i++)
             {
-                richTextBox1.Text += _item.getLog()[i].Item1 + ": \n" + "Price change: " + _item.getLog()[i].Item2.ToString() + "\n";
+                richTextBox1.Text += _item.getLog()[i].Item1 + ": \r\n" + "Price change: " + _item.getLog()[i].Item2.ToString() + "\r\n";
                 this.chart1.Series["Value"].Points.AddXY(_item.getLog()[i].Item1, _item.getLog()[i].Item2);
             }
+
+            if(_item.getPrice() > 7000) { chart1.ChartAreas[0].AxisY.Minimum = 7000; }
 
         }
 
@@ -69,7 +73,10 @@ namespace FinalProject
             
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pictureBox1.Image = Image.FromFile(ofd.FileName);
+                Image picture = Image.FromFile(ofd.FileName);
+                picture = ResizeImage(picture,pictureBox1.Width,pictureBox1.Height);
+                pictureBox1.Image = picture;
+
             }
         }
 
@@ -110,6 +117,31 @@ namespace FinalProject
         private void button2_Click_1(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
+        }
+
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
     }
 }
