@@ -90,6 +90,30 @@ namespace FinalProject
             return toReturn;
         }
 
+        private bool availableUsername(String username)
+        {
+            bool toReturn = false;
+            OleDbConnection conn = new OleDbConnection(_connectionString);
+            OleDbCommand findExistingUser = conn.CreateCommand();
+            try
+            {
+                conn.Open();
+                findExistingUser = new OleDbCommand("SELECT Username FROM Users WHERE Users.Username ='" + username + "'", conn);
+                String username2 = findExistingUser.ExecuteScalar().ToString();
+                if (!username2.Equals(""))
+                {
+                    toReturn = true;
+                }
+                conn.Close();
+            }
+            catch
+            {
+
+            }
+
+            return toReturn;
+        }
+
         // checks to see if email is available
         private bool availableEmail()
         {
@@ -117,6 +141,31 @@ namespace FinalProject
             return toReturn;
         }
 
+        private bool availableEmail(String email)
+        {
+            bool toReturn = false;
+            OleDbConnection conn = new OleDbConnection(_connectionString);
+            OleDbCommand findExistingEmail = conn.CreateCommand();
+            try
+            {
+                conn.Open();
+                findExistingEmail = new OleDbCommand("SELECT Email FROM Users WHERE Users.Email ='" + email + "'", conn);
+                String email2 = findExistingEmail.ExecuteScalar().ToString();
+                if (!email2.Equals(""))
+                {
+                    toReturn = true;
+                    //label11.Visible = true;
+                }
+                conn.Close();
+            }
+            catch
+            {
+                //label11.Visible = false;
+            }
+
+            return toReturn;
+        }
+
         // checks to see if username is in proper format and available
         private bool validUsername()
         {
@@ -135,6 +184,24 @@ namespace FinalProject
                 return false;
             }
             
+        }
+
+        public bool validUsername(String username)
+        {
+            bool containsAt = username.Contains('@');
+            bool available = availableUsername(username);
+            if (!available && !containsAt)
+            {
+                _username = username;
+                // label6.Visible = false;
+                return true;
+            }
+            else
+            {
+                // label6.Visible = true;
+                return false;
+            }
+
         }
 
         // checks to see if password is in proper format: contains at least one digit, one uppercase letter, and is 
@@ -158,10 +225,42 @@ namespace FinalProject
             }
         }
 
+        public bool validPassword(String password)
+        {
+            // String password = textBox3.Text;
+            bool containsUpper = password.Any(c => char.IsUpper(c));
+            bool containsInt = password.Any(c => char.IsDigit(c));
+            bool isProperLength = password.Length >= 6;
+            bool isValid = containsInt && containsUpper && isProperLength;
+            if (isValid)
+            {
+                // label8.Visible = false;
+                return true;
+            }
+            else
+            {
+                // label8.Visible = true;
+                return false;
+            }
+        }
+
         // checks to see if email is in proper format and available
         private bool validEmail()
         {
             string email = textBox2.Text;
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email; //&& availableEmail();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool validEmail(String email)
+        {
             try
             {
                 var addr = new MailAddress(email);
