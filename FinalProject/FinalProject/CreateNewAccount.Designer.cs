@@ -224,6 +224,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateNewAccount";
             this.Text = "CreateNewAccount";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateNewAccount_Closed);

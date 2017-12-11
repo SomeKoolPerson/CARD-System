@@ -30,12 +30,11 @@ namespace FinalProject
             String _username = getUser1.ExecuteScalar().ToString();
             Console.WriteLine(_username);
             conn.Close();*/
-            /**String connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\CARD.accdb";
+            //String connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\CARD.accdb";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Login login = new Login();
-            Application.Run(new CARD("shadiekid","njtulio8@gmail.com","Excalibur7",login,connectionString));
-            */
+            //Login login = new Login();
+            //Application.Run(new CARD("shadiekid","njtulio8@gmail.com","Excalibur7",login,connectionString));
             Application.Run(new Login());
         }
     }

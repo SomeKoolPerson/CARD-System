@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FinalProject
 {
@@ -48,7 +49,7 @@ namespace FinalProject
                     conn.Close();
                 }
             }*/
-            _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\nitulio\Documents\Final Project SE\the older one\FinalProject\CARD.accdb";
+            _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Directory.GetCurrentDirectory() + "\\CARD.accdb";
             InitializeComponent();
         }
 

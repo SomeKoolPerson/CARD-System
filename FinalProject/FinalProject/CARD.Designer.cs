@@ -551,6 +551,7 @@ namespace FinalProject
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 439);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CARD";
             this.Text = "C*A*R*D";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CARD_Closed);

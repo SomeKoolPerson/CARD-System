@@ -28,6 +28,8 @@ namespace FinalProject
         private Login _login;
         private Verify _verify;
 
+        private OleDbConnection conn;
+
         public User getUser()
         {
             return _user;
@@ -37,6 +39,8 @@ namespace FinalProject
         {
             _login = login;
             _connectionString = connectionString;
+            conn = new OleDbConnection(_connectionString);
+            conn.Open();
             _username = username;
             _email = email;
             _password = password;
@@ -54,10 +58,10 @@ namespace FinalProject
 
         public void pullCollection()
         {
-            OleDbConnection conn = new OleDbConnection(_connectionString);
+            //OleDbConnection conn = new OleDbConnection(_connectionString);
             OleDbCommand getCollection = conn.CreateCommand();
             getCollection = new OleDbCommand("SELECT ItemName, Description, Category, Condition, Price, Count FROM Collection WHERE Collection.Username = '" + _username + "'", conn);
-            conn.Open();
+            //conn.Open();
             OleDbDataReader reader = getCollection.ExecuteReader();
 
             while (reader.Read())
@@ -75,7 +79,7 @@ namespace FinalProject
 
                 _collection.AddItem(item);
             }
-            conn.Close();
+           // conn.Close();
         }
 
         // get the Collection associated with the current user
@@ -128,8 +132,8 @@ namespace FinalProject
             ListView.SelectedListViewItemCollection items = listView3.SelectedItems;
             foreach (ListViewItem eachitem in items){
                 String itemName = eachitem.Text;
-                OleDbConnection conn = new OleDbConnection(_connectionString);
-                conn.Open();
+                //OleDbConnection conn = new OleDbConnection(_connectionString);
+                //conn.Open();
                 OleDbCommand find = new OleDbCommand("SELECT Count FROM  Collection WHERE Username ='" + _username + "' AND ItemName='" + itemName + "'",conn);
                 OleDbDataReader reader = find.ExecuteReader();
                 reader.Read();
@@ -207,6 +211,7 @@ namespace FinalProject
         }*/
         private void CARD_Closed(object sender, FormClosedEventArgs e)
         {
+            conn.Close();
             _login.clear();
             _login.Show();
         }
@@ -262,13 +267,13 @@ namespace FinalProject
                     {
                         OleDbConnection conn = new OleDbConnection(_connectionString);
                         OleDbCommand updateUsername = conn.CreateCommand();
-                        conn.Open();
+                        //conn.Open();
                         updateUsername = new OleDbCommand("UPDATE [Users] SET [Username]='" + textBox1.Text + "' WHERE [Username]='" + _username + "'", conn);
                         updateUsername.ExecuteScalar();
                         OleDbCommand updateCollection = conn.CreateCommand();
                         updateCollection = new OleDbCommand("UPDATE [Collection] SET [Username]='" + textBox1.Text + "' WHERE [Username]='" + _username + "'", conn);
                         updateCollection.ExecuteScalar();
-                        conn.Close();
+                        //conn.Close();
                         _username = textBox1.Text;
                         _user.setUsername(_username);
                     }
@@ -299,10 +304,10 @@ namespace FinalProject
                 {
                     OleDbConnection conn = new OleDbConnection(_connectionString);
                     OleDbCommand updateUsername = conn.CreateCommand();
-                    conn.Open();
+                    //conn.Open();
                     updateUsername = new OleDbCommand("UPDATE [Users] SET [Email]='" + textBox2.Text + "' WHERE [Username]='" + _username + "'", conn);
                     updateUsername.ExecuteScalar();
-                    conn.Close();
+                    //conn.Close();
                     _email = textBox2.Text;
                     _user.setEmail(_email);
                     textBox2.Enabled = false;
@@ -331,10 +336,10 @@ namespace FinalProject
                 {
                     OleDbConnection conn = new OleDbConnection(_connectionString);
                     OleDbCommand updateUsername = conn.CreateCommand();
-                    conn.Open();
+                    //conn.Open();
                     updateUsername = new OleDbCommand("UPDATE [Users] SET [Password]='" + textBox3.Text + "' WHERE [Username]='" + _username + "'", conn);
                     updateUsername.ExecuteScalar();
-                    conn.Close();
+                    //conn.Close();
 
                     _password = textBox3.Text;
                     _user.setPassword(_password);
